@@ -1,0 +1,94 @@
+.loginpage{
+    /* height: calc(100vh - 60px); */
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: #f7f7f7; */
+    flex-direction: column;
+   
+}
+.steppercont{
+    width: 500px;
+    margin-top: 40px;
+}
+
+.logincontainer{
+    margin-top: 20px;
+    width: 350px;
+    height: 280px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+}
+
+.loginlogocont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 100px; */
+    justify-content: center;
+}
+
+.loginlogo{
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.logodash{
+   width: 40px;
+   background-color: indigo;
+   height: 4px;
+   border-radius: 10px;
+   margin-top: 5px;
+}
+
+.logininput{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.logininput input{
+    /* width: 100%; */
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid rgb(190, 190, 190);
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+
+.inputstyle{
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.logininput button{
+    margin-top: 40px;
+    font-size: 15px;
+    color: white;
+    background-color: indigo;
+    border: none;
+    outline: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.loginimg{
+    width: 200px;
+    height: auto;
+}
+
+.otpinput > input{
+    width: 15px !important; 
+    height: 15px !important; 
+}

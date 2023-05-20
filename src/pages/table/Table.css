@@ -1,0 +1,56 @@
+.tablepage{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 40px;  
+    margin-bottom: 50px;
+
+}
+
+.tablebody{
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 40px;
+justify-content: center;
+}
+
+.tableinput{
+    display: flex;
+    margin-top: 60px;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+}
+
+.tableselect{
+    width: 100%;
+}
+
+.tableheader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 400px; */
+}
+.tableheaderdata{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.tableheaderunderliner{
+    width: 130px;
+    height: 7px;
+    background-color: indigo;
+    border-radius: 10px;
+}
+
+
+.tableinput button{
+    width: 150px;
+    border: none;
+    height: 38px;
+    background-color: indigo;
+    color: white;
+    border-radius: 3px;
+}
