@@ -93,11 +93,11 @@ export const Table = () => {
 			});
 	};
 
-	// useEffect(() => {
-	// 	if (clgcode == 0) {
-	// 		navigate("/");
-	// 	}
-	// }, []);
+	useEffect(() => {
+		if (clgcode == 0) {
+			navigate("/");
+		}
+	}, []);
 
 	return (
 		<div className="tablepage">
