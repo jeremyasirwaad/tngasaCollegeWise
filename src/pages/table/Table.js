@@ -88,7 +88,6 @@ export const Table = () => {
 			.then((data) => data.json())
 			.then((result) => {
 				console.log(result.result);
-				setTabledata(result.result);
 				setIsloading(false);
 				setIsdatafetched(true);
 			});
