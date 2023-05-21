@@ -39,8 +39,18 @@ export const Login = () => {
 
 	const onSignInSubmit = (e) => {
 		e.preventDefault();
+		if (clgcode == "") {
+			toast.error("Enter College Code");
+			return;
+		}
+
+		var reqclg = clgocde_prici.find((clg) => clg.ccode == clgcode);
+		if (reqclg == null || reqclg == undefined) {
+			toast.error("College Code Doesnt exit");
+			return;
+		}
 		setStage1loader(true);
-		var phoneno = clgocde_prici.find((clg) => clg.ccode == clgcode).pricipal;
+		var phoneno = reqclg.pricipal;
 		configureCaptchaVerify();
 		const phoneNumber = "+91" + phoneno;
 		setPriciphone(phoneNumber);
