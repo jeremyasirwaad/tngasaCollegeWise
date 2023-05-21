@@ -6,6 +6,17 @@
     display: flex;
     align-items: center;
     padding: 10px;
+
+}
+
+.navbar2{
+    height: 55px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .navbar img{
@@ -20,3 +31,31 @@
     font-size: 21px;
 } 
 
+
+.loggedinnav-inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loggedinnav-inner2{
+    margin-right: 40px;
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logout-btn{
+    background-color: indigo;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer;
+    width: 150px;
+    margin-left: 20px;
+    cursor: pointer;
+}

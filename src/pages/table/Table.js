@@ -23,8 +23,6 @@ export const Table = () => {
 		return data.colCode == clgcode;
 	});
 
-	// console.log(options2);
-
 	const options = [
 		{ value: "ATTE1", label: "ATTE1" },
 		{ value: "APAE1", label: "APAE1" },
@@ -96,11 +94,11 @@ export const Table = () => {
 			});
 	};
 
-	useEffect(() => {
-		if (clgcode == 0) {
-			navigate("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (clgcode == 0) {
+	// 		navigate("/");
+	// 	}
+	// }, []);
 
 	return (
 		<div className="tablepage">

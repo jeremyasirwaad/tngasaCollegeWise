@@ -6,6 +6,7 @@ import { Login } from "./pages/Login/Login";
 import { Navbar } from "./common/Navbar/Navbar";
 import { Table } from "./pages/table/Table";
 import { UserProvider } from "./context/user-context";
+import { Navbar_loggedin } from "./common/Navbar/Navbar-loggedin";
 
 const router = createBrowserRouter([
 	{
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
 		path: "/table",
 		element: (
 			<div>
-				<Navbar />
+				<Navbar_loggedin />
 				<Table />
 			</div>
 		)

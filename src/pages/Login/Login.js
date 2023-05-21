@@ -6,20 +6,23 @@ import { auth } from "../../firebase.config";
 import { Toaster, toast } from "react-hot-toast";
 import OTPInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
-import clgocde_prici from "../../data/clgcode_pricipal.json";
+import clgocde_prici from "../../data/ccode_pno_map.json";
 import userContext from "../../context/user-context";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export const Login = () => {
-	const { setuserclgcode } = useContext(userContext);
+	const { setuserclgcode, setCname } = useContext(userContext);
 
 	const navigate = useNavigate();
+
+	var clgname = "";
 
 	const [stage1loader, setStage1loader] = useState(false);
 	const [clgcode, setClgcode] = useState("");
 	const [stepnumber, setstepnumber] = useState(0);
 	const [priciphone, setPriciphone] = useState("");
 	const [otp, setOtp] = useState();
+	const [priciname, setPriciname] = useState("");
 
 	const configureCaptchaVerify = () => {
 		window.recaptchaVerifier = new RecaptchaVerifier(
@@ -44,16 +47,18 @@ export const Login = () => {
 			return;
 		}
 
-		var reqclg = clgocde_prici.find((clg) => clg.ccode == clgcode);
+		var reqclg = clgocde_prici.find((clg) => clg.ccode.toString() == clgcode);
 		if (reqclg == null || reqclg == undefined) {
 			toast.error("College Code Doesnt exit");
 			return;
 		}
 		setStage1loader(true);
-		var phoneno = reqclg.pricipal;
+		var phoneno = reqclg.pno.toString();
+		var pname = reqclg.pname;
 		configureCaptchaVerify();
 		const phoneNumber = "+91" + phoneno;
 		setPriciphone(phoneNumber);
+		setPriciname(pname);
 		console.log(phoneNumber);
 		const appVerifier = window.recaptchaVerifier;
 		signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -90,7 +95,7 @@ export const Login = () => {
 				// ...
 			})
 			.catch((error) => {
-				var err = JSON.stringify(error);
+				console.log(JSON.stringify(error));
 				if (error) {
 					toast.error("Invalid OTP");
 				}
@@ -153,7 +158,8 @@ export const Login = () => {
 						<div className="logodash"></div>
 					</div>
 					<p style={{ textAlign: "center" }}>
-						OTP has been sent to the principal's mobile {priciphone}
+						OTP has been sent to the principal's mobile {priciname} -{" "}
+						{priciphone}
 					</p>
 					<div className="logininput">
 						<div className="inputstyle2">
