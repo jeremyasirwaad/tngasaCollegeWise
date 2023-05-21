@@ -1,4 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import "./Table.css";
 import PulseLoader from "react-spinners/PulseLoader";
@@ -8,6 +9,8 @@ import userContext from "../../context/user-context";
 import ccode_branchmap from "../../data/seatmatrix.json";
 
 export const Table = () => {
+	const navigate = useNavigate();
+
 	const { clgcode } = useContext(userContext);
 	const [tabledata, setTabledata] = useState([]);
 	const [bcode, setbcode] = useState("");
@@ -92,6 +95,12 @@ export const Table = () => {
 				setIsdatafetched(true);
 			});
 	};
+
+	useEffect(() => {
+		if (clgcode == 0) {
+			navigate("/");
+		}
+	}, []);
 
 	return (
 		<div className="tablepage">

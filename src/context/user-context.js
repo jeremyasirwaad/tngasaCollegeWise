@@ -3,9 +3,9 @@ import { createContext, useState } from "react";
 const userContext = createContext();
 
 export function UserProvider({ children }) {
-	const [clgcode, setclgcode] = useState(1021001);
+	const [clgcode, setClgcode] = useState(0);
 	return (
-		<userContext.Provider value={{ clgcode: clgcode }}>
+		<userContext.Provider value={{ clgcode: clgcode, setuserclgcode: setClgcode }}>
 			{children}
 		</userContext.Provider>
 	);

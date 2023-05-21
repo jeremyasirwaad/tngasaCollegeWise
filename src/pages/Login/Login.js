@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
-import loginimg from "./undraw_secure_login_pdn4.png";
 import { Stepper, Step } from "react-form-stepper";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import { Toaster, toast } from "react-hot-toast";
-import OTPInput, { ResendOTP } from "otp-input-react";
+import OTPInput from "otp-input-react";
 import { useNavigate } from "react-router-dom";
+import clgocde_prici from "../../data/clgcode_pricipal.json";
+import userContext from "../../context/user-context";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export const Login = () => {
+	const { setuserclgcode } = useContext(userContext);
+
 	const navigate = useNavigate();
-	const [phoneno, setPhoneno] = useState("");
+
+	const [stage1loader, setStage1loader] = useState(false);
+	const [clgcode, setClgcode] = useState("");
 	const [stepnumber, setstepnumber] = useState(0);
+	const [priciphone, setPriciphone] = useState("");
 	const [otp, setOtp] = useState();
 
 	const configureCaptchaVerify = () => {
@@ -32,8 +39,11 @@ export const Login = () => {
 
 	const onSignInSubmit = (e) => {
 		e.preventDefault();
+		setStage1loader(true);
+		var phoneno = clgocde_prici.find((clg) => clg.ccode == clgcode).pricipal;
 		configureCaptchaVerify();
 		const phoneNumber = "+91" + phoneno;
+		setPriciphone(phoneNumber);
 		console.log(phoneNumber);
 		const appVerifier = window.recaptchaVerifier;
 		signInWithPhoneNumber(auth, phoneNumber, appVerifier)
@@ -65,6 +75,7 @@ export const Login = () => {
 				// User signed in successfully.
 				const user = result.user;
 				console.log(JSON.stringify(user));
+				setuserclgcode(clgcode);
 				navigate("/table");
 				// ...
 			})
@@ -106,14 +117,20 @@ export const Login = () => {
 							<span>Enter College Code:</span>
 							<input
 								onChange={(e) => {
-									setPhoneno(e.target.value);
+									setClgcode(e.target.value);
 								}}
 								type="text"
 								placeholder="College Code"
 							/>
 						</div>
 
-						<button onClick={onSignInSubmit}>Get OTP</button>
+						{stage1loader ? (
+							<button onClick={onSignInSubmit}>
+								<ClipLoader color="white" size={20} />
+							</button>
+						) : (
+							<button onClick={onSignInSubmit}>Get OTP</button>
+						)}
 					</div>
 				</div>
 			)}
@@ -125,9 +142,11 @@ export const Login = () => {
 						<span className="loginlogo">Login</span>
 						<div className="logodash"></div>
 					</div>
-
+					<p style={{ textAlign: "center" }}>
+						OTP has been sent to the principal's mobile {priciphone}
+					</p>
 					<div className="logininput">
-						<div className="inputstyle">
+						<div className="inputstyle2">
 							<span>Enter OTP</span>
 							<OTPInput
 								className={"otpinput"}

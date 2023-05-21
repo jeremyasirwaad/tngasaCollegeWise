@@ -71,6 +71,15 @@
     justify-content: center;
 }
 
+.inputstyle2{
+    margin-top: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
 .logininput button{
     margin-top: 40px;
     font-size: 15px;
