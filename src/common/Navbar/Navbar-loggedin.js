@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import userContext from "../../context/user-context";
@@ -9,6 +9,12 @@ export const Navbar_loggedin = () => {
 	const navigate = useNavigate();
 
 	const { clgcode, setClgcode } = useContext(userContext);
+
+	useEffect(() => {
+		if (clgcode == 0) {
+			navigate("/");
+		}
+	}, []);
 
 	return (
 		<div className="navbar2">
