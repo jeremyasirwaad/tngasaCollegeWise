@@ -10,11 +10,11 @@ const url =
 	"mongodb+srv://jeremy:jeremy4755@cluster1.cxfkdzp.mongodb.net/?retryWrites=true&w=majority";
 const databasename = "tngasa";
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
 	res.send("TNGASA");
 });
 
-app.get("/list", async (req, res) => {
+app.get("/api/list", async (req, res) => {
 	const clgid = req.query.clgid;
 	const branchid = req.query.bid;
 	console.log(clgid, branchid);
