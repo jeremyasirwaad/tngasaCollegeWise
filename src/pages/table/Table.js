@@ -86,7 +86,7 @@ export const Table = () => {
 
 	const getdata = () => {
 		setIsloading(true);
-		fetch(`http://localhost:8080/list?clgid=1021001&bid=${bcode}`)
+		fetch(`http://54.158.108.248/api/list?clgid=${clgcode}&bid=${bcode}`)
 			.then((data) => data.json())
 			.then((result) => {
 				console.log(result.result);
