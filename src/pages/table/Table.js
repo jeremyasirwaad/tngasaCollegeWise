@@ -332,6 +332,150 @@ export const Table = () => {
 			});
 	};
 
+	const part1download = async () => {
+		// Perform the fetch call to get the array of objects
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+
+				const newdata = removeDuplicates(data.result, "_aid");
+
+				var sorteddata = newdata.sort((a, b) => {
+					return parseInt(a.r1) - parseInt(b.r1);
+				});
+
+				sorteddata.map((value, index) => {
+					value["rank"] = index + 1;
+				});
+				// Convert the fetched data to CSV format
+				const csvData = sorteddata.map((item) => ({
+					// Map the item properties to match your CSV columns
+
+					rank: item.rank,
+					Admission_No: item._aid,
+					Name: item.name,
+					Gender: item.g,
+					Community: item.comm,
+					Stream: hg_to_data(item.hg),
+					Subjects_Studied: subs_to_data(item),
+					Choice_Number: item.cno,
+					Mobile: item.m,
+					Alt_Mobile: item.alm,
+					Email: item.e
+				}));
+
+				// Trigger the CSV download
+				const csvDataString = PapaUnparse(csvData);
+				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
+				const csvUrl = URL.createObjectURL(csvBlob);
+				const link = document.createElement("a");
+				link.href = csvUrl;
+				link.download = `${clgcode}_part1.csv`;
+				link.click();
+				URL.revokeObjectURL(csvUrl);
+			})
+			.catch((error) => {
+				console.error("Error fetching data:", error);
+			});
+	};
+
+	const part2download = async () => {
+		// Perform the fetch call to get the array of objects
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+
+				const newdata = removeDuplicates(data.result, "_aid");
+
+				var sorteddata = newdata.sort((a, b) => {
+					return parseInt(a.r2) - parseInt(b.r2);
+				});
+
+				sorteddata.map((value, index) => {
+					value["rank"] = index + 1;
+				});
+				// Convert the fetched data to CSV format
+				const csvData = sorteddata.map((item) => ({
+					// Map the item properties to match your CSV columns
+
+					rank: item.rank,
+					Admission_No: item._aid,
+					Name: item.name,
+					Gender: item.g,
+					Community: item.comm,
+					Stream: hg_to_data(item.hg),
+					Subjects_Studied: subs_to_data(item),
+					Choice_Number: item.cno,
+					Mobile: item.m,
+					Alt_Mobile: item.alm,
+					Email: item.e
+				}));
+
+				// Trigger the CSV download
+				const csvDataString = PapaUnparse(csvData);
+				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
+				const csvUrl = URL.createObjectURL(csvBlob);
+				const link = document.createElement("a");
+				link.href = csvUrl;
+				link.download = `${clgcode}_part2.csv`;
+				link.click();
+				URL.revokeObjectURL(csvUrl);
+			})
+			.catch((error) => {
+				console.error("Error fetching data:", error);
+			});
+	};
+
+	const part3download = async () => {
+		// Perform the fetch call to get the array of objects
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+
+				const newdata = removeDuplicates(data.result, "_aid");
+
+				var sorteddata = newdata.sort((a, b) => {
+					return parseInt(a.r3) - parseInt(b.r3);
+				});
+
+				sorteddata.map((value, index) => {
+					value["rank"] = index + 1;
+				});
+				// Convert the fetched data to CSV format
+				const csvData = sorteddata.map((item) => ({
+					// Map the item properties to match your CSV columns
+
+					rank: item.rank,
+					Admission_No: item._aid,
+					Name: item.name,
+					Gender: item.g,
+					Community: item.comm,
+					Stream: hg_to_data(item.hg),
+					Subjects_Studied: subs_to_data(item),
+					Choice_Number: item.cno,
+					Mobile: item.m,
+					Alt_Mobile: item.alm,
+					Email: item.e
+				}));
+
+				// Trigger the CSV download
+				const csvDataString = PapaUnparse(csvData);
+				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
+				const csvUrl = URL.createObjectURL(csvBlob);
+				const link = document.createElement("a");
+				link.href = csvUrl;
+				link.download = `${clgcode}_part3.csv`;
+				link.click();
+				URL.revokeObjectURL(csvUrl);
+			})
+			.catch((error) => {
+				console.error("Error fetching data:", error);
+			});
+	};
+
 	const columns = [
 		{
 			title: "Rank",
@@ -538,21 +682,27 @@ export const Table = () => {
 						<button
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
-							data={exceldownloaddata}
+							onClick={() => {
+								part1download();
+							}}
 						>
 							Part 1 - Rank
 						</button>
 						<button
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
-							data={exceldownloaddata}
+							onClick={() => {
+								part2download();
+							}}
 						>
 							Part 2 - Rank
 						</button>
 						<button
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
-							data={exceldownloaddata}
+							onClick={() => {
+								part3download();
+							}}
 						>
 							Part 3 - Rank
 						</button>

@@ -80,4 +80,5 @@ justify-content: center;
     margin: 10px;
     font-size: 14px;
     border: none;
+    cursor: pointer;
 }

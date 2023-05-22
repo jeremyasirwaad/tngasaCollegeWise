@@ -147,6 +147,28 @@ app.get("/api/sports", async (req, res) => {
 		});
 });
 
+app.get("/api/part", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid) })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
 app.listen(8080, () => {
 	console.log("Port listening in 8080");
 });
