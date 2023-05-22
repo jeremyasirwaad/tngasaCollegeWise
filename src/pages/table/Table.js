@@ -106,7 +106,7 @@ export const Table = () => {
 		},
 		{
 			title: "Aggregate Mark",
-			dataIndex: "tot",
+			dataIndex: "agg",
 			key: "7"
 		},
 		{
@@ -131,27 +131,36 @@ export const Table = () => {
 		fetch(`http://54.158.108.248/api/list?clgid=${clgcode}&bid=${bcode}`)
 			.then((data) => data.json())
 			.then((result) => {
-				console.log(result.result);
+				// console.log(result.result);
 				var tablepredata = result.result;
 				var newArrayOfObj = [];
 				if (isr1(bcode)) {
-					newArrayOfObj = tablepredata.map(({ r1: ogrank, ...rest }) => ({
-						ogrank,
-						...rest
-					}));
+					newArrayOfObj = tablepredata.map(
+						({ r1: ogrank, tot: agg, ...rest }) => ({
+							agg: "100",
+							ogrank,
+							...rest
+						})
+					);
 				}
 				if (isr2(bcode)) {
 					newArrayOfObj = tablepredata.map(({ r2: ogrank, ...rest }) => ({
+						agg: "100",
 						ogrank,
 						...rest
 					}));
 				}
 				if (isr3(bcode)) {
-					newArrayOfObj = tablepredata.map(({ r3: ogrank, ...rest }) => ({
-						ogrank,
-						...rest
-					}));
+					newArrayOfObj = tablepredata.map(
+						({ r3: ogrank, tot: agg, ...rest }) => ({
+							agg,
+							ogrank,
+							...rest
+						})
+					);
 				}
+
+				// console.log(newArrayOfObj);
 
 				var sorteddata = newArrayOfObj.sort((a, b) => {
 					return parseInt(a.ogrank) - parseInt(b.ogrank);
@@ -188,6 +197,7 @@ export const Table = () => {
 						className="tableselect"
 						options={options2}
 						onChange={(e) => {
+							setIsdatafetched(false);
 							setbcode(e.value);
 						}}
 					/>
