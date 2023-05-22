@@ -29,10 +29,54 @@ export const Table = () => {
 		{ value: "SPHE1", label: "SPHE1" }
 	];
 
+	const r1list = [
+		"LTLT1",
+		"LTLT2",
+		"LTAT1",
+		"LTAT2",
+		"LMAE1",
+		"LTET1",
+		"LTET2",
+		"LURE1",
+		"LHDE1",
+		"LSAE1"
+	];
+
+	const r2list = ["LENE1", "LENE1M", "LENE2"];
+
+	const isr1 = (value) => {
+		if (r1list.includes(value)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	const isr2 = (value) => {
+		if (r2list.includes(value)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	const isr3 = (value) => {
+		if (!r1list.includes(value) && !r2list.includes(value)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	const columns = [
 		{
 			title: "Rank",
-			dataIndex: "r1",
+			dataIndex: "rank",
+			key: "12"
+		},
+		{
+			title: "OgRank",
+			dataIndex: "ogrank",
 			key: "1"
 		},
 		{
@@ -88,6 +132,37 @@ export const Table = () => {
 			.then((data) => data.json())
 			.then((result) => {
 				console.log(result.result);
+				var tablepredata = result.result;
+				var newArrayOfObj = [];
+				if (isr1(bcode)) {
+					newArrayOfObj = tablepredata.map(({ r1: ogrank, ...rest }) => ({
+						ogrank,
+						...rest
+					}));
+				}
+				if (isr2(bcode)) {
+					newArrayOfObj = tablepredata.map(({ r2: ogrank, ...rest }) => ({
+						ogrank,
+						...rest
+					}));
+				}
+				if (isr3(bcode)) {
+					newArrayOfObj = tablepredata.map(({ r3: ogrank, ...rest }) => ({
+						ogrank,
+						...rest
+					}));
+				}
+
+				var sorteddata = newArrayOfObj.sort((a, b) => {
+					return parseInt(a.ogrank) - parseInt(b.ogrank);
+				});
+
+				sorteddata.map((value, index) => {
+					value["rank"] = index + 1;
+					return value;
+				});
+
+				setTabledata(sorteddata);
 				setIsloading(false);
 				setIsdatafetched(true);
 			});

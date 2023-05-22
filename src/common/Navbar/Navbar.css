@@ -25,7 +25,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    width: 100%;
+    /* width: 100%; */
     justify-content: space-between;
 }
 
@@ -53,6 +53,7 @@
     width: 50%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .logout-btn{
@@ -65,7 +66,8 @@
     align-items: center;
     justify-content: space-evenly;
     cursor: pointer;
-    width: 150px;
+    width: 110px;
     margin-left: 20px;
     cursor: pointer;
+    height: 40px;
 }

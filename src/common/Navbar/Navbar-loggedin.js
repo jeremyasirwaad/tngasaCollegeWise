@@ -10,11 +10,11 @@ export const Navbar_loggedin = () => {
 
 	const { clgcode, setClgcode } = useContext(userContext);
 
-	useEffect(() => {
-		if (clgcode == 0) {
-			navigate("/");
-		}
-	}, []);
+	// useEffect(() => {
+	// 	if (clgcode == 0) {
+	// 		navigate("/");
+	// 	}
+	// }, []);
 
 	return (
 		<div className="navbar2">
@@ -39,10 +39,9 @@ export const Navbar_loggedin = () => {
 			</div>
 			<div className="loggedinnav-inner2">
 				<span>
-					{
+					{clgcode !== 0 &&
 						clgocde_prici.filter((data) => data.ccode.toString() === clgcode)[0]
-							.cname
-					}
+							.cname}
 				</span>
 				<button
 					className="logout-btn"
