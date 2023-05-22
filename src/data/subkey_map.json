@@ -1,0 +1,334 @@
+[
+  {
+    "s_no": 1,
+    "sub_name": "ACCOUNTANCY"
+  },
+  {
+    "s_no": 2,
+    "sub_name": "ADVANCED LANGUAGE(TAMIL)"
+  },
+  {
+    "s_no": 3,
+    "sub_name": "AGRICULTURAL SCIENCE"
+  },
+  {
+    "s_no": 4,
+    "sub_name": "AGRICULTURAL SCIENCE- THEORY"
+  },
+  {
+    "s_no": 5,
+    "sub_name": "APPLIED MATHEMATICS"
+  },
+  {
+    "s_no": 6,
+    "sub_name": "APPLIED PHYSICS"
+  },
+  {
+    "s_no": 7,
+    "sub_name": "AUDITING"
+  },
+  {
+    "s_no": 8,
+    "sub_name": "BANKING"
+  },
+  {
+    "s_no": 9,
+    "sub_name": "BASIC AUTOMOBILE ENGINEERING"
+  },
+  {
+    "s_no": 10,
+    "sub_name": "BASIC AUTOMOBILE ENGINEERING - THEORY"
+  },
+  {
+    "s_no": 11,
+    "sub_name": "BASIC CIVIL ENGINEERING"
+  },
+  {
+    "s_no": 12,
+    "sub_name": "BASIC CIVIL ENGINEERING - THEORY"
+  },
+  {
+    "s_no": 13,
+    "sub_name": "BASIC ELECTRICAL ENGINEERING"
+  },
+  {
+    "s_no": 14,
+    "sub_name": "BASIC ELECTRICAL ENGINEERING - THEORY"
+  },
+  {
+    "s_no": 15,
+    "sub_name": "BASIC ELECTRONICS ENGINEERING"
+  },
+  {
+    "s_no": 16,
+    "sub_name": "BASIC ELECTRONICS ENGINEERING - THEORY"
+  },
+  {
+    "s_no": 17,
+    "sub_name": "BASIC MECHANICAL ENGINEERING"
+  },
+  {
+    "s_no": 18,
+    "sub_name": "BASIC MECHANICAL ENGINEERING - THEORY"
+  },
+  {
+    "s_no": 19,
+    "sub_name": "BIO-CHEMISTRY"
+  },
+  {
+    "s_no": 20,
+    "sub_name": "BIOLOGY"
+  },
+  {
+    "s_no": 21,
+    "sub_name": "BIOTECHNOLOGY"
+  },
+  {
+    "s_no": 22,
+    "sub_name": "BOTANY"
+  },
+  {
+    "s_no": 23,
+    "sub_name": "BUSINESS ADMINISTRATION"
+  },
+  {
+    "s_no": 24,
+    "sub_name": "BUSINESS MATHEMATICS AND STATISTICS"
+  },
+  {
+    "s_no": 25,
+    "sub_name": "BUSINESS STUDIES"
+  },
+  {
+    "s_no": 26,
+    "sub_name": "CHEMISTRY"
+  },
+  {
+    "s_no": 27,
+    "sub_name": "COMMERCE"
+  },
+  {
+    "s_no": 28,
+    "sub_name": "COMMUNICATIVE ENGLISH"
+  },
+  {
+    "s_no": 29,
+    "sub_name": "COMPUTER APPLICATIONS"
+  },
+  {
+    "s_no": 30,
+    "sub_name": "COMPUTER SCIENCE"
+  },
+  {
+    "s_no": 31,
+    "sub_name": "COMPUTER TECHNOLOGY"
+  },
+  {
+    "s_no": 32,
+    "sub_name": "DATA ENTRY OPERATIONS"
+  },
+  {
+    "s_no": 33,
+    "sub_name": "ECONOMICS"
+  },
+  {
+    "s_no": 34,
+    "sub_name": "ENGG. GRAPHICS"
+  },
+  {
+    "s_no": 35,
+    "sub_name": "ENGLISH"
+  },
+  {
+    "s_no": 36,
+    "sub_name": "ENGLISH CORE"
+  },
+  {
+    "s_no": 37,
+    "sub_name": "ENGLISH ELECTIVE"
+  },
+  {
+    "s_no": 38,
+    "sub_name": "ENTREPRENEURSHIP"
+  },
+  {
+    "s_no": 39,
+    "sub_name": "ENVIRONMENTAL SCIENCE"
+  },
+  {
+    "s_no": 40,
+    "sub_name": "ETHICS AND INDIAN CULTURE"
+  },
+  {
+    "s_no": 41,
+    "sub_name": "FOOD SERVICE MANAGEMENT"
+  },
+  {
+    "s_no": 42,
+    "sub_name": "FOOD SERVICE MANAGEMENT - THEORY"
+  },
+  {
+    "s_no": 43,
+    "sub_name": "GEOGRAPHY"
+  },
+  {
+    "s_no": 44,
+    "sub_name": "HINDI CORE"
+  },
+  {
+    "s_no": 45,
+    "sub_name": "HINDI ELECTIVE"
+  },
+  {
+    "s_no": 46,
+    "sub_name": "HISTORY"
+  },
+  {
+    "s_no": 47,
+    "sub_name": "HOME SCIENCE"
+  },
+  {
+    "s_no": 48,
+    "sub_name": "INFORMATICS PRACTICES"
+  },
+  {
+    "s_no": 49,
+    "sub_name": "INFORMATION TECHNOLOGY"
+  },
+  {
+    "s_no": 50,
+    "sub_name": "LANGUAGE"
+  },
+  {
+    "s_no": 51,
+    "sub_name": "LEGAL STUDIES"
+  },
+  {
+    "s_no": 52,
+    "sub_name": "MARKETING"
+  },
+  {
+    "s_no": 53,
+    "sub_name": "MASS COMMUNICATION"
+  },
+  {
+    "s_no": 54,
+    "sub_name": "MATHEMATICS"
+  },
+  {
+    "s_no": 55,
+    "sub_name": "MATHEMATICS - II"
+  },
+  {
+    "s_no": 56,
+    "sub_name": "MICRO-BIOLOGY"
+  },
+  {
+    "s_no": 57,
+    "sub_name": "NURSING"
+  },
+  {
+    "s_no": 58,
+    "sub_name": "NURSING - THEORY"
+  },
+  {
+    "s_no": 59,
+    "sub_name": "NURSING GENERAL"
+  },
+  {
+    "s_no": 60,
+    "sub_name": "NUTRITION & DIETETICS"
+  },
+  {
+    "s_no": 61,
+    "sub_name": "OFFICE MANAGEMENT AND SECRETARYSHIP - THEORY"
+  },
+  {
+    "s_no": 62,
+    "sub_name": "PAINTING"
+  },
+  {
+    "s_no": 63,
+    "sub_name": "PHYSICAL EDUCATION"
+  },
+  {
+    "s_no": 64,
+    "sub_name": "PHYSICS"
+  },
+  {
+    "s_no": 65,
+    "sub_name": "POLITICAL SCIENCE"
+  },
+  {
+    "s_no": 66,
+    "sub_name": "PRACTICAL - I"
+  },
+  {
+    "s_no": 67,
+    "sub_name": "PRACTICAL - II"
+  },
+  {
+    "s_no": 68,
+    "sub_name": "PSYCHOLOGY"
+  },
+  {
+    "s_no": 69,
+    "sub_name": "SOCIOLOGY"
+  },
+  {
+    "s_no": 70,
+    "sub_name": "STATISTICS"
+  },
+  {
+    "s_no": 73,
+    "sub_name": "TAMIL"
+  },
+  {
+    "s_no": 74,
+    "sub_name": "TEXTILE TECHNOLOGY"
+  },
+  {
+    "s_no": 75,
+    "sub_name": "TEXTILE TECHNOLOGY  - THEORY"
+  },
+  {
+    "s_no": 76,
+    "sub_name": "TEXTILES AND DRESS DESIGNING"
+  },
+  {
+    "s_no": 77,
+    "sub_name": "TEXTILES AND DRESS DESIGNING - THEORY"
+  },
+  {
+    "s_no": 78,
+    "sub_name": "TYPOGRAPHY AND COMPUTER APPLICATIONS"
+  },
+  {
+    "s_no": 79,
+    "sub_name": "VOCATIONAL THEORY"
+  },
+  {
+    "s_no": 80,
+    "sub_name": "ZOOLOGY"
+  },
+  {
+    "s_no": 81,
+    "sub_name": "SANSKRIT"
+  },
+  {
+    "s_no": 82,
+    "sub_name": "ARABIC"
+  },
+  {
+    "s_no": 83,
+    "sub_name": "FRENCH"
+  },
+  {
+    "s_no": 84,
+    "sub_name": "URDU"
+  },
+  {
+    "s_no": 85,
+    "sub_name": "BENGALI"
+  }
+]

@@ -37,6 +37,116 @@ app.get("/api/list", async (req, res) => {
 		});
 });
 
+app.get("/api/dap", async (req, res) => {
+	const clgid = req.query.clgid;
+	console.log(clgid, branchid);
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid), dap: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
+app.get("/api/ex", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid), ex: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
+app.get("/api/ncc", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid), ncc: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
+app.get("/api/ants", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid), ants: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
+app.get("/api/sports", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid), vsc: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
 app.listen(8080, () => {
 	console.log("Port listening in 8080");
 });
