@@ -74,7 +74,7 @@ export const Login = () => {
 			.catch((error) => {
 				// Error; SMS not sent
 				// ...
-				toast.success("SMS not Sent");
+				toast.error("Too many login requests, Try after 1 hour");
 				console.log(error);
 				console.log("SMS not sent");
 			});
