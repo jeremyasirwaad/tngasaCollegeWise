@@ -26,6 +26,71 @@ export const Table = () => {
 		return data.colCode == clgcode;
 	});
 
+	const DIFF_ABLED_TYPES = [
+		{ key: "1", label: "Visually Impaired" },
+		{ key: "2", label: "Hearing Impaired" },
+		{ key: "3", label: "Locomotor disability" },
+		{
+			key: "4",
+			label:
+				"Autism / Intellectual disability / Specific learning disability / Mental illness"
+		},
+		{ key: "5", label: "Multiple Disability" }
+	];
+
+	const SPORTS_LEVEL_OF_PARTICIPATION = [
+		{ key: "1", label: "District" },
+		{ key: "2", label: "Divisional" },
+		{ key: "3", label: "State" },
+		{ key: "4", label: "National" },
+		{ key: "5", label: "International" },
+		{ key: "6", label: "None of the above" }
+	];
+
+	const SECURITY_FORCES_OPTS = [
+		{ key: "1", label: "Widows/wards of Defense personnel killed in action" },
+		{
+			key: "2",
+			label: "Wards of serving personnel and ex-servicemen disabled in action"
+		},
+		{
+			key: "3",
+			label:
+				"Widows/Wards of Defense personnel who died in peace time with death attributable to Military service."
+		},
+		{
+			key: "4",
+			label:
+				"Wards of Defense personnel disabled in peace time with disability attributable to military service"
+		},
+		{
+			key: "5",
+			label:
+				"Wards of Ex-servicemen personnel and serving police forces who are in receipt of Gallantry Awards (Gallaniry Awards include : Paramvir Chakra, Ashok Chakra, SarvottamYudhSeva Medal, MahaVir Chakra, Kirti Chakra, UitamYudhseva Medal, Vir Chakra, Shaurya Chakra, Yudhseva Medal Sena,  Nausena-Vayusena Medal.)"
+		},
+		{
+			key: "6",
+			label: "President Police Medal for Gallantry' Police medal for Gallantry"
+		},
+		{ key: "7", label: "None of the Above" }
+	];
+
+	const diffid_to_name = (id) => {
+		// console.log(id);
+		const type = DIFF_ABLED_TYPES.find((data) => data.key === id);
+		return type.label;
+	};
+
+	const sportid_to_name = (id) => {
+		const type = SPORTS_LEVEL_OF_PARTICIPATION.find((data) => data.key === id);
+		return type.label;
+	};
+
+	const security_forces_to_name = (id) => {
+		const type = SECURITY_FORCES_OPTS.find((data) => data.key === id);
+		return type.label;
+	};
+
 	const options = [
 		{ value: "ATTE1", label: "ATTE1" },
 		{ value: "APAE1", label: "APAE1" },
@@ -194,7 +259,7 @@ export const Table = () => {
 
 	const exdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/ex?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ex?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -211,13 +276,18 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
-				const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
 				// Trigger the CSV download
-				const csvDataString = PapaUnparse(Delremcsvdata);
+				const csvDataString = PapaUnparse(csvData);
 				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
 				const csvUrl = URL.createObjectURL(csvBlob);
 				const link = document.createElement("a");
@@ -233,7 +303,7 @@ export const Table = () => {
 
 	const nccdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/ncc?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ncc?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -250,12 +320,17 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
-				const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
 				// Trigger the CSV download
-				const csvDataString = PapaUnparse(Delremcsvdata);
+				const csvDataString = PapaUnparse(csvData);
 				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
 				const csvUrl = URL.createObjectURL(csvBlob);
 				const link = document.createElement("a");
@@ -271,7 +346,7 @@ export const Table = () => {
 
 	const antsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/ants?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ants?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -288,13 +363,18 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
-				const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
 				// Trigger the CSV download
-				const csvDataString = PapaUnparse(Delremcsvdata);
+				const csvDataString = PapaUnparse(csvData);
 				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
 				const csvUrl = URL.createObjectURL(csvBlob);
 				const link = document.createElement("a");
@@ -310,30 +390,39 @@ export const Table = () => {
 
 	const sportsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/sports?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/sports?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
 				// Convert the fetched data to CSV format
-				const csvData = data.result.map((item) => ({
-					// Map the item properties to match your CSV columns
+				const temp = data.result.filter((obj) => obj.slp !== "6");
 
+				const csvData = temp.map((item) => ({
+					// Map the item properties to match your CSV columns
 					Admission_No: item._aid,
 					Name: item.name,
 					Gender: item.g,
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
+					category: sportid_to_name(item.slp),
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
-				const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+				// const removekey6 = csvData.filter((obj) => obj.slp !== "6");
+
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
 				// Trigger the CSV download
-				const csvDataString = PapaUnparse(Delremcsvdata);
+				const csvDataString = PapaUnparse(csvData);
 				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
 				const csvUrl = URL.createObjectURL(csvBlob);
 				const link = document.createElement("a");
@@ -349,7 +438,7 @@ export const Table = () => {
 
 	const dapdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/ants?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/dap?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -363,16 +452,22 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
+					category: diffid_to_name(item.adt),
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
-				const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
 				// Trigger the CSV download
-				const csvDataString = PapaUnparse(Delremcsvdata);
+				const csvDataString = PapaUnparse(csvData);
 				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
 				const csvUrl = URL.createObjectURL(csvBlob);
 				const link = document.createElement("a");
@@ -386,9 +481,57 @@ export const Table = () => {
 			});
 	};
 
+	const securityforcesdownload = async () => {
+		// Perform the fetch call to get the array of objects
+		fetch(`http://localhost:8080/api/secforce?clgid=${clgcode}`)
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+
+				const temp = data.result.filter((obj) => obj.psf !== "7");
+
+				// Convert the fetched data to CSV format
+				const csvData = temp.map((item) => ({
+					// Map the item properties to match your CSV columns
+
+					Admission_No: item._aid,
+					Name: item.name,
+					Gender: item.g,
+					Community: item.comm,
+					Stream: hg_to_data(item.hg),
+					Subjects_Studied: subs_to_data(item),
+					category: security_forces_to_name(item.psf),
+					Choice_Number: item.cno,
+					Mobile: item.m,
+					Alt_Mobile: item.alm,
+					Email: item.e,
+					Branch_choice: item.bname,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
+				}));
+
+				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
+
+				// Trigger the CSV download
+				const csvDataString = PapaUnparse(csvData);
+				const csvBlob = new Blob([csvDataString], { type: "text/csv" });
+				const csvUrl = URL.createObjectURL(csvBlob);
+				const link = document.createElement("a");
+				link.href = csvUrl;
+				link.download = `${clgcode}_securityforces.csv`;
+				link.click();
+				URL.revokeObjectURL(csvUrl);
+			})
+			.catch((error) => {
+				console.error("Error fetching data:", error);
+			});
+	};
+
 	const part1download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -416,7 +559,12 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Aggregate_marks: item.rks1,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
 				// Trigger the CSV download
@@ -436,7 +584,7 @@ export const Table = () => {
 
 	const part2download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -464,7 +612,8 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Aggregate_marks: item.rks2
 				}));
 
 				// Trigger the CSV download
@@ -484,7 +633,7 @@ export const Table = () => {
 
 	const part3download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -512,7 +661,8 @@ export const Table = () => {
 					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
-					Email: item.e
+					Email: item.e,
+					Aggregate_marks: item.rks3
 				}));
 
 				// Trigger the CSV download
@@ -628,7 +778,7 @@ export const Table = () => {
 
 	const getdata = () => {
 		setIsloading(true);
-		fetch(`http://54.158.108.248/api/list?clgid=${clgcode}&bid=${bcode}`)
+		fetch(`http://localhost:8080/api/list?clgid=${clgcode}&bid=${bcode}`)
 			.then((data) => data.json())
 			.then((result) => {
 				// console.log(result.result);
@@ -777,7 +927,6 @@ export const Table = () => {
 					</p>
 					<div className="otherdownloads">
 						{/* hello */}
-
 						<button
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
@@ -841,6 +990,15 @@ export const Table = () => {
 							}}
 						>
 							NCC
+						</button>
+						<button
+							className="otherdownloadbtnlink"
+							style={{ textDecoration: "none" }}
+							onClick={() => {
+								securityforcesdownload();
+							}}
+						>
+							Security Forces
 						</button>
 						<button
 							className="otherdownloadbtnlink"

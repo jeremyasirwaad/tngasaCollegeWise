@@ -39,7 +39,7 @@ app.get("/api/list", async (req, res) => {
 
 app.get("/api/dap", async (req, res) => {
 	const clgid = req.query.clgid;
-	console.log(clgid, branchid);
+
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
@@ -47,6 +47,28 @@ app.get("/api/dap", async (req, res) => {
 
 			collection
 				.find({ ccode: parseInt(clgid), dap: "Y" })
+				.toArray()
+				.then((ans) => {
+					console.log(ans);
+					res.json({ result: ans });
+				});
+		})
+		.catch((err) => {
+			// Printing the error message
+			console.log(err.Message);
+		});
+});
+
+app.get("/api/secforce", async (req, res) => {
+	const clgid = req.query.clgid;
+
+	MongoClient.connect(url)
+		.then((client) => {
+			const connect = client.db(databasename);
+			const collection = connect.collection("tngasa-college");
+
+			collection
+				.find({ ccode: parseInt(clgid) })
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
