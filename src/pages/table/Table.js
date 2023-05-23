@@ -32,6 +32,50 @@ export const Table = () => {
 		{ value: "SPHE1", label: "SPHE1" }
 	];
 
+	const isadvanced = (data) => {
+		var flag = false;
+		if (
+			data.s1 == "2" ||
+			data.s2 == "2" ||
+			data.s3 == "2" ||
+			data.s4 == "2" ||
+			data.s5 == "2" ||
+			data.s6 == "2"
+		) {
+			flag = true;
+		}
+
+		if (data.s6 !== undefined || data.s6 !== null) {
+			if (data.s6 == "2") {
+				flag = true;
+			}
+		}
+
+		return flag;
+	};
+
+	const istamilstudied = (data) => {
+		var flag = false;
+		if (
+			data.s1 == "73" ||
+			data.s2 == "73" ||
+			data.s3 == "73" ||
+			data.s4 == "73" ||
+			data.s5 == "73" ||
+			data.s6 == "73"
+		) {
+			flag = true;
+		}
+
+		if (data.s6 !== undefined || data.s6 !== null) {
+			if (data.s6 == "74") {
+				flag = true;
+			}
+		}
+
+		return flag;
+	};
+
 	const r1list = [
 		"LTLT1",
 		"LTLT2",
@@ -46,6 +90,8 @@ export const Table = () => {
 	];
 
 	const r2list = ["LENE1", "LENE1M", "LENE2"];
+
+	const tamil_list = ["LTLT1", "LTLT2", "LTAT1", "LTAT2"];
 
 	const isr1 = (value) => {
 		if (r1list.includes(value)) {
@@ -65,6 +111,14 @@ export const Table = () => {
 
 	const isr3 = (value) => {
 		if (!r1list.includes(value) && !r2list.includes(value)) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	const istamilbranch = (value) => {
+		if (tamil_list.includes(value)) {
 			return true;
 		} else {
 			return false;
@@ -532,22 +586,22 @@ export const Table = () => {
 			title: "Sub Stud",
 			render: (id, record, index) => {
 				var subsstudied = "";
-				if (record.s1 !== undefined || record.s1 !== null) {
+				if (record.s1 !== undefined && record.s1 !== null) {
 					subsstudied = subsstudied + "1." + sub_to_name(record.s1) + "\t";
 				}
-				if (record.s2 !== undefined || record.s2 !== null) {
+				if (record.s2 !== undefined && record.s2 !== null) {
 					subsstudied = subsstudied + "2." + sub_to_name(record.s2) + "\t";
 				}
-				if (record.s3 !== undefined || record.s3 !== null) {
+				if (record.s3 !== undefined && record.s3 !== null) {
 					subsstudied = subsstudied + "3." + sub_to_name(record.s3) + "\t";
 				}
-				if (record.s4 !== undefined || record.s4 !== null) {
+				if (record.s4 !== undefined && record.s4 !== null) {
 					subsstudied = subsstudied + "4." + sub_to_name(record.s4) + "\t";
 				}
-				if (record.s5 !== undefined || record.s5 !== null) {
+				if (record.s5 !== undefined && record.s5 !== null) {
 					subsstudied = subsstudied + "5." + sub_to_name(record.s5) + "\t";
 				}
-				if (record.s6 !== undefined || record.s6 !== null) {
+				if (record.s6 !== undefined && record.s6 !== null) {
 					subsstudied = subsstudied + "6." + sub_to_name(record.s6) + "\t";
 				}
 
@@ -608,11 +662,56 @@ export const Table = () => {
 					);
 				}
 
-				// console.log(newArrayOfObj);
+				var sorteddata = [];
 
-				var sorteddata = newArrayOfObj.sort((a, b) => {
-					return parseInt(a.ogrank) - parseInt(b.ogrank);
-				});
+				if (istamilbranch(bcode)) {
+					console.log(newArrayOfObj);
+					var advtamilstudents = newArrayOfObj.filter((data) =>
+						isadvanced(data)
+					);
+					var nontamilsadvtudets = newArrayOfObj.filter((data) => {
+						if (isadvanced(data)) {
+							return false;
+						} else {
+							return true;
+						}
+					});
+
+					var onlytamil = nontamilsadvtudets.filter((data) =>
+						istamilstudied(data)
+					);
+					var notamilatall = nontamilsadvtudets.filter((data) => {
+						if (istamilstudied(data)) {
+							return false;
+						} else {
+							return true;
+						}
+					});
+
+					var wholetamillist = [];
+
+					var advtamilstudentssorted = advtamilstudents.sort((a, b) => {
+						return parseInt(a.ogrank) - parseInt(b.ogrank);
+					});
+
+					var onlytamilsorted = onlytamil.sort((a, b) => {
+						return parseInt(a.ogrank) - parseInt(b.ogrank);
+					});
+
+					var notamilatallsorted = notamilatall.sort((a, b) => {
+						return parseInt(a.ogrank) - parseInt(b.ogrank);
+					});
+
+					var temp = wholetamillist.concat(advtamilstudentssorted);
+					var temp1 = temp.concat(onlytamilsorted);
+					var temp2 = temp1.concat(notamilatallsorted);
+
+					sorteddata = temp2;
+				} else {
+					sorteddata = newArrayOfObj.sort((a, b) => {
+						return parseInt(a.ogrank) - parseInt(b.ogrank);
+					});
+				}
 
 				console.log(sorteddata);
 
@@ -773,19 +872,13 @@ export const Table = () => {
 						Get Data
 					</button>
 					{isdatafetched && (
-						<button
-							style={{ marginLeft: "10px" }}
-							onClick={() => {
-								getdata();
-							}}
+						<CSVLink
+							filename={`${clgcode}_${bcode}`}
+							data={exceldownloaddata}
+							className="otherdownloadbtnlink2"
 						>
-							<CSVLink
-								style={{ textDecoration: "none", color: "white" }}
-								data={exceldownloaddata}
-							>
-								Download as Excel
-							</CSVLink>
-						</button>
+							Download as Excel
+						</CSVLink>
 					)}
 				</div>
 			</div>

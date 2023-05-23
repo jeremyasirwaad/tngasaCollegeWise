@@ -313,11 +313,12 @@
   },
   {
     "s_no": 81,
-    "sub_name": "SANSKRIT"
+    "sub_name": "ARABIC"
+
   },
   {
     "s_no": 82,
-    "sub_name": "ARABIC"
+    "sub_name": "SANSKRIT"
   },
   {
     "s_no": 83,
@@ -325,10 +326,10 @@
   },
   {
     "s_no": 84,
-    "sub_name": "URDU"
+    "sub_name": "BENGALI"
   },
   {
     "s_no": 85,
-    "sub_name": "BENGALI"
+    "sub_name": "URDU"
   }
 ]
