@@ -577,9 +577,45 @@ export const Table = () => {
 
 				const newdata = removeDuplicates(data.result, "_aid");
 
-				var sorteddata = newdata.sort((a, b) => {
-					return parseInt(a.r1) - parseInt(b.r1);
+				var advtamilstudents = newdata.filter((data) => isadvanced(data));
+				var nontamilsadvtudets = newdata.filter((data) => {
+					if (isadvanced(data)) {
+						return false;
+					} else {
+						return true;
+					}
 				});
+
+				var onlytamil = nontamilsadvtudets.filter((data) =>
+					istamilstudied(data)
+				);
+				var notamilatall = nontamilsadvtudets.filter((data) => {
+					if (istamilstudied(data)) {
+						return false;
+					} else {
+						return true;
+					}
+				});
+
+				var wholetamillist = [];
+
+				var advtamilstudentssorted = advtamilstudents.sort((a, b) => {
+					return parseInt(a.ogrank) - parseInt(b.ogrank);
+				});
+
+				var onlytamilsorted = onlytamil.sort((a, b) => {
+					return parseInt(a.ogrank) - parseInt(b.ogrank);
+				});
+
+				var notamilatallsorted = notamilatall.sort((a, b) => {
+					return parseInt(a.ogrank) - parseInt(b.ogrank);
+				});
+
+				var temp = wholetamillist.concat(advtamilstudentssorted);
+				var temp1 = temp.concat(onlytamilsorted);
+				var temp2 = temp1.concat(notamilatallsorted);
+
+				var sorteddata = temp2;
 
 				sorteddata.map((value, index) => {
 					value["rank"] = index + 1;
@@ -931,6 +967,10 @@ export const Table = () => {
 						Community: data.comm,
 						Stream: hg_to_data(data.hg),
 						Agg_Mark: data.agg,
+						DPI_Status:
+							data.df === null || data.df === undefined
+								? "To Be Verified"
+								: data.df,
 						Subjects_Studied: subs_to_data(data),
 						Choice_Number: data.cno,
 						Mobile: data.m,
