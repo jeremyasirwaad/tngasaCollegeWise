@@ -282,7 +282,7 @@ export const Table = () => {
 
 	const exdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/ex?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ex?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -334,7 +334,7 @@ export const Table = () => {
 
 	const nccdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/ncc?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ncc?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -386,7 +386,7 @@ export const Table = () => {
 
 	const antsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/ants?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/ants?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -436,7 +436,7 @@ export const Table = () => {
 
 	const sportsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/sports?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/sports?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -488,7 +488,7 @@ export const Table = () => {
 
 	const dapdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/dap?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/dap?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -540,7 +540,7 @@ export const Table = () => {
 
 	const securityforcesdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/secforce?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/secforce?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -592,7 +592,7 @@ export const Table = () => {
 
 	const part1download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -684,7 +684,7 @@ export const Table = () => {
 
 	const part2download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -737,7 +737,7 @@ export const Table = () => {
 
 	const part3download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`https://collegeportal.tngasa.in/api/part?clgid=${clgcode}`)
+		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -887,7 +887,7 @@ export const Table = () => {
 	const getdata = () => {
 		setIsloading(true);
 		fetch(
-			`https://collegeportal.tngasa.in/api/list?clgid=${clgcode}&bid=${bcode}`
+			`http://localhost:8080/api/list?clgid=${clgcode}&bid=${bcode}`
 		)
 			.then((data) => data.json())
 			.then((result) => {
