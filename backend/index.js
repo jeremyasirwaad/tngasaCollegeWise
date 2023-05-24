@@ -7,8 +7,8 @@ const collegedata = require("./model/collegedata-model");
 const MongoClient = require("mongodb").MongoClient;
 
 const url =
-	"mongodb+srv://jeremy:jeremy4755@cluster1.cxfkdzp.mongodb.net/?retryWrites=true&w=majority";
-const databasename = "tngasa";
+	"gowri sir put you string here !!!!!";
+const databasename = "gasa";
 
 app.get("/api", (req, res) => {
 	res.send("TNGASA");
@@ -21,7 +21,7 @@ app.get("/api/list", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ bcode: branchid, ccode: parseInt(clgid) })
@@ -43,7 +43,7 @@ app.get("/api/dap", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid), dap: "Y" })
@@ -65,7 +65,7 @@ app.get("/api/secforce", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid) })
@@ -87,7 +87,7 @@ app.get("/api/ex", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid), ex: "Y" })
@@ -109,7 +109,7 @@ app.get("/api/ncc", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid), ncc: "Y" })
@@ -131,7 +131,7 @@ app.get("/api/ants", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid), ants: "Y" })
@@ -153,7 +153,7 @@ app.get("/api/sports", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid), vsc: "Y" })
@@ -175,7 +175,7 @@ app.get("/api/part", async (req, res) => {
 	MongoClient.connect(url)
 		.then((client) => {
 			const connect = client.db(databasename);
-			const collection = connect.collection("tngasa-college");
+			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ ccode: parseInt(clgid) })
