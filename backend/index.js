@@ -68,7 +68,7 @@ app.get("/api/secforce", async (req, res) => {
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
-				.find({ ccode: parseInt(clgid) })
+				.find({ ccode: parseInt(clgid), psf: { "$in": ["1","2","3","4","5","6"] }  })
 				.toArray()
 				.then((ans) => {
 					console.log(ans);

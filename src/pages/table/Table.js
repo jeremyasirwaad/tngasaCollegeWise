@@ -77,7 +77,7 @@ export const Table = () => {
 		{ key: "7", label: "None of the Above" }
 	];
 
-	const dimention_changer = (list) => {
+	const dimention_changer = (list) => {	
 		console.log(list);
 		const temp = removeDuplicates(list, "_aid");
 		console.log(temp);
@@ -289,8 +289,12 @@ export const Table = () => {
 
 				const temp = dimention_changer(data.result);
 
+				var sorteddata = temp.sort((a, b) => {
+					return parseFloat(a.r3) - parseFloat(b.r3);
+				});
+
 				// Convert the fetched data to CSV format
-				const csvData = temp.map((item) => ({
+				const csvData = sorteddata.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -306,7 +310,8 @@ export const Table = () => {
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
-							: item.df
+							: item.df,
+					Aggregate_marks: item.rks3
 				}));
 
 				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
@@ -336,8 +341,12 @@ export const Table = () => {
 
 				const temp = dimention_changer(data.result);
 
+				var sorteddata = temp.sort((a, b) => {
+					return parseFloat(a.r3) - parseFloat(b.r3);
+				});
+
 				// Convert the fetched data to CSV format
-				const csvData = temp.map((item) => ({
+				const csvData = sorteddata.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -354,7 +363,8 @@ export const Table = () => {
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
-							: item.df
+							: item.df,
+					Aggregate_marks: item.rks3
 				}));
 				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
 
@@ -381,8 +391,12 @@ export const Table = () => {
 			.then((data) => {
 				console.log(data);
 				const dimention = dimention_changer(data.result);
+
+				var sorteddata = dimention.sort((a, b) => {
+					return parseFloat(a.r3) - parseFloat(b.r3);
+				});
 				// Convert the fetched data to CSV format
-				const csvData = dimention.map((item) => ({
+				const csvData = sorteddata.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -398,7 +412,8 @@ export const Table = () => {
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
-							: item.df
+							: item.df,
+					Aggregate_marks: item.rks3
 				}));
 
 				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
@@ -479,8 +494,11 @@ export const Table = () => {
 				console.log(data);
 				const temp = dimention_changer(data.result);
 
+				var sorteddata = temp.sort((a, b) => {
+					return parseFloat(a.r3) - parseFloat(b.r3);
+				});
 				// Convert the fetched data to CSV format
-				const csvData = temp.map((item) => ({
+				const csvData = sorteddata.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -498,7 +516,8 @@ export const Table = () => {
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
-							: item.df
+							: item.df,
+					Aggregate_marks: item.rks3
 				}));
 
 				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
@@ -527,10 +546,12 @@ export const Table = () => {
 				console.log(data);
 				const temp1 = dimention_changer(data.result);
 
-				const temp = temp1.filter((obj) => obj.psf !== "7");
+				var sorteddata = temp1.sort((a, b) => {
+					return parseFloat(a.r3) - parseFloat(b.r3);
+				});
 
 				// Convert the fetched data to CSV format
-				const csvData = temp.map((item) => ({
+				const csvData = sorteddata.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -547,7 +568,8 @@ export const Table = () => {
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
-							: item.df
+							: item.df,
+					Aggregate_marks: item.rks3
 				}));
 
 				// const Delremcsvdata = removeDuplicates(csvData, "Admission_No");
@@ -578,6 +600,7 @@ export const Table = () => {
 				const newdata = removeDuplicates(data.result, "_aid");
 
 				var advtamilstudents = newdata.filter((data) => isadvanced(data));
+
 				var nontamilsadvtudets = newdata.filter((data) => {
 					if (isadvanced(data)) {
 						return false;
@@ -600,15 +623,15 @@ export const Table = () => {
 				var wholetamillist = [];
 
 				var advtamilstudentssorted = advtamilstudents.sort((a, b) => {
-					return parseInt(a.ogrank) - parseInt(b.ogrank);
+					return parseFloat(a.r1) - parseFloat(b.r1);
 				});
 
 				var onlytamilsorted = onlytamil.sort((a, b) => {
-					return parseInt(a.ogrank) - parseInt(b.ogrank);
+					return parseFloat(a.r1) - parseFloat(b.r1);
 				});
 
 				var notamilatallsorted = notamilatall.sort((a, b) => {
-					return parseInt(a.ogrank) - parseInt(b.ogrank);
+					return parseFloat(a.r1) - parseFloat(b.r1);
 				});
 
 				var temp = wholetamillist.concat(advtamilstudentssorted);
@@ -616,6 +639,8 @@ export const Table = () => {
 				var temp2 = temp1.concat(notamilatallsorted);
 
 				var sorteddata = temp2;
+
+				console.log(sorteddata);
 
 				sorteddata.map((value, index) => {
 					value["rank"] = index + 1;
@@ -667,7 +692,7 @@ export const Table = () => {
 				const newdata = removeDuplicates(data.result, "_aid");
 
 				var sorteddata = newdata.sort((a, b) => {
-					return parseInt(a.r2) - parseInt(b.r2);
+					return parseFloat(a.r2) - parseFloat(b.r2);
 				});
 
 				sorteddata.map((value, index) => {
@@ -720,7 +745,7 @@ export const Table = () => {
 				const newdata = removeDuplicates(data.result, "_aid");
 
 				var sorteddata = newdata.sort((a, b) => {
-					return parseInt(a.r3) - parseInt(b.r3);
+					return parseFloat(a.r3) - parseFloat(b.r3);
 				});
 
 				sorteddata.map((value, index) => {
@@ -926,15 +951,15 @@ export const Table = () => {
 					var wholetamillist = [];
 
 					var advtamilstudentssorted = advtamilstudents.sort((a, b) => {
-						return parseInt(a.ogrank) - parseInt(b.ogrank);
+						return parseFloat(a.ogrank) - parseFloat(b.ogrank);
 					});
 
 					var onlytamilsorted = onlytamil.sort((a, b) => {
-						return parseInt(a.ogrank) - parseInt(b.ogrank);
+						return parseFloat(a.ogrank) - parseFloat(b.ogrank);
 					});
 
 					var notamilatallsorted = notamilatall.sort((a, b) => {
-						return parseInt(a.ogrank) - parseInt(b.ogrank);
+						return parseFloat(a.ogrank) - parseFloat(b.ogrank);
 					});
 
 					var temp = wholetamillist.concat(advtamilstudentssorted);
@@ -944,7 +969,7 @@ export const Table = () => {
 					sorteddata = temp2;
 				} else {
 					sorteddata = newArrayOfObj.sort((a, b) => {
-						return parseInt(a.ogrank) - parseInt(b.ogrank);
+						return parseFloat(a.ogrank) - parseFloat(b.ogrank);
 					});
 				}
 
