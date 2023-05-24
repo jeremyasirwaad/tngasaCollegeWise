@@ -282,7 +282,7 @@ export const Table = () => {
 
 	const exdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/ex?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/ex?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -329,7 +329,7 @@ export const Table = () => {
 
 	const nccdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/ncc?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/ncc?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -376,7 +376,7 @@ export const Table = () => {
 
 	const antsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/ants?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/ants?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -421,7 +421,7 @@ export const Table = () => {
 
 	const sportsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/sports?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/sports?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -473,7 +473,7 @@ export const Table = () => {
 
 	const dapdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/dap?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/dap?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -521,7 +521,7 @@ export const Table = () => {
 
 	const securityforcesdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/secforce?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/secforce?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -570,7 +570,7 @@ export const Table = () => {
 
 	const part1download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/part?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -659,7 +659,7 @@ export const Table = () => {
 
 	const part2download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/part?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -712,7 +712,7 @@ export const Table = () => {
 
 	const part3download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://13.232.138.11/api/part?clgid=${clgcode}`)
+		fetch(`https://13.232.138.11/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -861,7 +861,7 @@ export const Table = () => {
 
 	const getdata = () => {
 		setIsloading(true);
-		fetch(`http://13.232.138.11/api/list?clgid=${clgcode}&bid=${bcode}`)
+		fetch(`https://13.232.138.11/api/list?clgid=${clgcode}&bid=${bcode}`)
 			.then((data) => data.json())
 			.then((result) => {
 				// console.log(result.result);

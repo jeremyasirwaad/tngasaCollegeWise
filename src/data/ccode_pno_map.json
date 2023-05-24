@@ -4,13 +4,15 @@
     "cname": "Presidency College, Chennai – 600 005.",
     "pname": "Dr. Raman",
     "pno": 9843632220,
+    "pno_1": 9443623822,
     "email": "presidencycollege5@gmail.com"
   },
   {
     "ccode": 1011005,
     "cname": "Dr. Ambedkar Government  Arts College, Vysarpadi, Chennai-600 039.",
     "pname": "Dr. Sumathi.R",
-    "pno": 9710069808,
+    "pno": 9894122331,
+    "pno_1": 9710069808,
     "email": "dagacvys@yahoo.co.in"
   },
   {
@@ -45,7 +47,9 @@
     "ccode": 1012002,
     "cname": "Queen Mary’S College, Chennai – 600 004.",
     "pname": "Dr. Uma Maheswari.B",
-    "pno": 9787631400,
+    "pno": 9894599094,
+    "pno_1": 9787631400,
+
     "email": "principal@queenmaryscollege.edu.in"
   },
   {
@@ -73,7 +77,8 @@
     "ccode": 1021001,
     "cname": "Government Arts College, Coimbatore - 641 018.",
     "pname": "Dr. Ulagi.R",
-    "pno": 9442738359,
+    "pno": 9842279020,
+    "pno_1": 9442738359,
     "email": "govtartscoimbatore18@gmail.com"
   },
   {
