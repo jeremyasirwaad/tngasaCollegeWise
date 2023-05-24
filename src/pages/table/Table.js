@@ -687,7 +687,11 @@ export const Table = () => {
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Aggregate_marks: item.rks2
+					Aggregate_marks: item.rks2,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
 				// Trigger the CSV download
@@ -736,7 +740,11 @@ export const Table = () => {
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Aggregate_marks: item.rks3
+					Aggregate_marks: item.rks3,
+					DPI_Matched:
+						item.df === null || item.df === undefined
+							? "To Be Verified"
+							: item.df
 				}));
 
 				// Trigger the CSV download
