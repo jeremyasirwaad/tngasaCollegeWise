@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import "./Table.css";
 import PulseLoader from "react-spinners/PulseLoader";
+import SyncLoader from "react-spinners/SyncLoader";
 import { Table as Tableantd } from "antd";
 import { CSVLink } from "react-csv";
 import userContext from "../../context/user-context";
@@ -18,6 +19,7 @@ export const Table = () => {
 	const [exceldownloaddata, setExceldownloaddata] = useState([]);
 	const [bcode, setbcode] = useState("");
 	const [isloading, setIsloading] = useState(false);
+	const [downloadinflag, setDownloadinflag] = useState(false);
 	const [isdatafetched, setIsdatafetched] = useState(false);
 
 	console.log(clgcode);
@@ -74,6 +76,27 @@ export const Table = () => {
 		},
 		{ key: "7", label: "None of the Above" }
 	];
+
+	const dimention_changer = (list) => {
+		console.log(list);
+		const temp = removeDuplicates(list, "_aid");
+		console.log(temp);
+		temp.map((data) => {
+			var choices = "";
+			list.map((data2) => {
+				if (data._aid === data2._aid) {
+					choices = choices + " " + data2.bcode;
+					console.log(data._aid);
+				}
+			});
+			data["choice_list"] = choices;
+			return data;
+		});
+
+		console.log(temp);
+
+		return temp;
+	};
 
 	const diffid_to_name = (id) => {
 		// console.log(id);
@@ -259,12 +282,15 @@ export const Table = () => {
 
 	const exdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/ex?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/ex?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+
+				const temp = dimention_changer(data.result);
+
 				// Convert the fetched data to CSV format
-				const csvData = data.result.map((item) => ({
+				const csvData = temp.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -273,11 +299,10 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -295,6 +320,7 @@ export const Table = () => {
 				link.download = `${clgcode}_Ex_service.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -303,12 +329,15 @@ export const Table = () => {
 
 	const nccdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/ncc?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/ncc?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+
+				const temp = dimention_changer(data.result);
+
 				// Convert the fetched data to CSV format
-				const csvData = data.result.map((item) => ({
+				const csvData = temp.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -317,11 +346,11 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
+
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -338,6 +367,7 @@ export const Table = () => {
 				link.download = `${clgcode}_ncc.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -346,12 +376,13 @@ export const Table = () => {
 
 	const antsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/ants?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/ants?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				const dimention = dimention_changer(data.result);
 				// Convert the fetched data to CSV format
-				const csvData = data.result.map((item) => ({
+				const csvData = dimention.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -360,11 +391,10 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -382,6 +412,7 @@ export const Table = () => {
 				link.download = `${clgcode}_andaman&nicobar.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -390,12 +421,15 @@ export const Table = () => {
 
 	const sportsdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/sports?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/sports?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+
+				const temp1 = dimention_changer(data.result);
+
 				// Convert the fetched data to CSV format
-				const temp = data.result.filter((obj) => obj.slp !== "6");
+				const temp = temp1.filter((obj) => obj.slp !== "6");
 
 				const csvData = temp.map((item) => ({
 					// Map the item properties to match your CSV columns
@@ -406,11 +440,11 @@ export const Table = () => {
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
 					category: sportid_to_name(item.slp),
-					Choice_Number: item.cno,
+
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -430,6 +464,7 @@ export const Table = () => {
 				link.download = `${clgcode}_sports.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -438,12 +473,14 @@ export const Table = () => {
 
 	const dapdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/dap?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/dap?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				const temp = dimention_changer(data.result);
+
 				// Convert the fetched data to CSV format
-				const csvData = data.result.map((item) => ({
+				const csvData = temp.map((item) => ({
 					// Map the item properties to match your CSV columns
 
 					Admission_No: item._aid,
@@ -453,11 +490,11 @@ export const Table = () => {
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
 					category: diffid_to_name(item.adt),
-					Choice_Number: item.cno,
+
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -475,6 +512,7 @@ export const Table = () => {
 				link.download = `${clgcode}_disabled.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -483,12 +521,13 @@ export const Table = () => {
 
 	const securityforcesdownload = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/secforce?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/secforce?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				const temp1 = dimention_changer(data.result);
 
-				const temp = data.result.filter((obj) => obj.psf !== "7");
+				const temp = temp1.filter((obj) => obj.psf !== "7");
 
 				// Convert the fetched data to CSV format
 				const csvData = temp.map((item) => ({
@@ -501,11 +540,10 @@ export const Table = () => {
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
 					category: security_forces_to_name(item.psf),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Branch_choice: item.bname,
+					Branch_choice: item.choice_list,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -523,6 +561,7 @@ export const Table = () => {
 				link.download = `${clgcode}_securityforces.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -531,7 +570,7 @@ export const Table = () => {
 
 	const part1download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -556,7 +595,6 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
@@ -576,6 +614,7 @@ export const Table = () => {
 				link.download = `${clgcode}_part1.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -584,7 +623,7 @@ export const Table = () => {
 
 	const part2download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -609,7 +648,6 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
@@ -625,6 +663,7 @@ export const Table = () => {
 				link.download = `${clgcode}_part2.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -633,7 +672,7 @@ export const Table = () => {
 
 	const part3download = async () => {
 		// Perform the fetch call to get the array of objects
-		fetch(`http://localhost:8080/api/part?clgid=${clgcode}`)
+		fetch(`http://54.158.108.248/api/part?clgid=${clgcode}`)
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -658,7 +697,6 @@ export const Table = () => {
 					Community: item.comm,
 					Stream: hg_to_data(item.hg),
 					Subjects_Studied: subs_to_data(item),
-					Choice_Number: item.cno,
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
@@ -674,6 +712,7 @@ export const Table = () => {
 				link.download = `${clgcode}_part3.csv`;
 				link.click();
 				URL.revokeObjectURL(csvUrl);
+				setDownloadinflag(false);
 			})
 			.catch((error) => {
 				console.error("Error fetching data:", error);
@@ -778,7 +817,7 @@ export const Table = () => {
 
 	const getdata = () => {
 		setIsloading(true);
-		fetch(`http://localhost:8080/api/list?clgid=${clgcode}&bid=${bcode}`)
+		fetch(`http://54.158.108.248/api/list?clgid=${clgcode}&bid=${bcode}`)
 			.then((data) => data.json())
 			.then((result) => {
 				// console.log(result.result);
@@ -916,6 +955,13 @@ export const Table = () => {
 
 	return (
 		<div className="tablepage">
+			{downloadinflag && (
+				<div className="loaderbody">
+					<span className="downllading">Downloading Document</span>
+					<SyncLoader color="indigo" size={20} />
+				</div>
+			)}
+
 			<div className="tablebody">
 				<div className="tableheader">
 					<div className="tableheaderdata">Students Data</div>
@@ -931,6 +977,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								part1download();
 							}}
 						>
@@ -940,6 +987,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								part2download();
 							}}
 						>
@@ -949,6 +997,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								part3download();
 							}}
 						>
@@ -958,6 +1007,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								dapdownload();
 							}}
 						>
@@ -967,6 +1017,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								sportsdownload();
 							}}
 						>
@@ -977,6 +1028,7 @@ export const Table = () => {
 							style={{ textDecoration: "none" }}
 							// data={exdownload}
 							onClick={() => {
+								setDownloadinflag(true);
 								exdownload();
 							}}
 						>
@@ -986,6 +1038,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								nccdownload();
 							}}
 						>
@@ -995,6 +1048,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								securityforcesdownload();
 							}}
 						>
@@ -1004,6 +1058,7 @@ export const Table = () => {
 							className="otherdownloadbtnlink"
 							style={{ textDecoration: "none" }}
 							onClick={() => {
+								setDownloadinflag(true);
 								antsdownload();
 							}}
 						>

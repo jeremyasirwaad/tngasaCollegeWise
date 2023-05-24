@@ -99,3 +99,21 @@ justify-content: center;
     justify-content: center;
     margin-left: 10px;
 }
+
+.loaderbody{
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    padding-top: 40px;
+    width: 100vw;
+    height:calc(100vh - 120px);
+    position: fixed;
+    background-color: white;
+    z-index: 10;
+    flex-direction: column;
+}
+
+.downllading{
+    margin-bottom: 50px;
+    font-size: 35px;
+}
