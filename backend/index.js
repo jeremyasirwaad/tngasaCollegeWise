@@ -36,6 +36,11 @@ app.get("/api/list", async (req, res) => {
 							clgid
 						);
 					}
+
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
+
 					console.log(ans);
 					res.json({ result: ans });
 				});
@@ -59,6 +64,9 @@ app.get("/api/dap", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -84,6 +92,9 @@ app.get("/api/secforce", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -106,6 +117,9 @@ app.get("/api/ex", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -128,6 +142,9 @@ app.get("/api/ncc", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -150,6 +167,9 @@ app.get("/api/ants", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -172,6 +192,9 @@ app.get("/api/sports", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
@@ -194,6 +217,9 @@ app.get("/api/part", async (req, res) => {
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
+					if (ans == []) {
+						console.log("This is empty", branchid, clgid);
+					}
 					res.json({ result: ans });
 				});
 		})
