@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const collegedata = require("./model/collegedata-model");
 const MongoClient = require("mongodb").MongoClient;
 
-const url = "gowri sir put you string here !!!!!";
+const url = "mongodb+srv://tneaadmin:tneagctadmission2019@tneaload.ohdde.mongodb.net/?retryWrites=true&w=majority";
 const databasename = "gasa";
 
 app.get("/api", (req, res) => {
@@ -17,15 +17,17 @@ app.get("/api/list", async (req, res) => {
 	const clgid = req.query.clgid;
 	const branchid = req.query.bid;
 	console.log(clgid, branchid);
+	let connect = null;
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
 				.find({ bcode: branchid, ccode: parseInt(clgid) })
 				.toArray()
 				.then((ans) => {
+
 					if (ans == undefined || ans == null) {
 						console.log(
 							ans,
@@ -42,21 +44,24 @@ app.get("/api/list", async (req, res) => {
 					}
 
 					console.log(ans);
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
+		
 });
 
 app.get("/api/dap", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			 connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -67,21 +72,23 @@ app.get("/api/dap", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/secforce", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -95,21 +102,23 @@ app.get("/api/secforce", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/ex", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -120,21 +129,23 @@ app.get("/api/ex", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/ncc", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -145,21 +156,23 @@ app.get("/api/ncc", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/ants", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -170,21 +183,23 @@ app.get("/api/ants", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/sports", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -195,21 +210,23 @@ app.get("/api/sports", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.get("/api/part", async (req, res) => {
 	const clgid = req.query.clgid;
+	let connect = null;
 
 	MongoClient.connect(url)
 		.then((client) => {
-			const connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -220,13 +237,14 @@ app.get("/api/part", async (req, res) => {
 					if (ans == []) {
 						console.log("This is empty", branchid, clgid);
 					}
+					client.close();
 					res.json({ result: ans });
 				});
 		})
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		});
+		})
 });
 
 app.listen(8080, () => {
