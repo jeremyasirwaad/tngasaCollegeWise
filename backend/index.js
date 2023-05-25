@@ -6,8 +6,7 @@ const mongoose = require("mongoose");
 const collegedata = require("./model/collegedata-model");
 const MongoClient = require("mongodb").MongoClient;
 
-const url =
-	"gowri sir put you string here !!!!!";
+const url = "gowri sir put you string here !!!!!";
 const databasename = "gasa";
 
 app.get("/api", (req, res) => {
@@ -27,6 +26,16 @@ app.get("/api/list", async (req, res) => {
 				.find({ bcode: branchid, ccode: parseInt(clgid) })
 				.toArray()
 				.then((ans) => {
+					if (ans == undefined || ans == null) {
+						console.log(
+							ans,
+							"this is null",
+							"bcode:",
+							branchid,
+							"ccode",
+							clgid
+						);
+					}
 					console.log(ans);
 					res.json({ result: ans });
 				});
@@ -68,7 +77,10 @@ app.get("/api/secforce", async (req, res) => {
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
-				.find({ ccode: parseInt(clgid), psf: { "$in": ["1","2","3","4","5","6"] }  })
+				.find({
+					ccode: parseInt(clgid),
+					psf: { $in: ["1", "2", "3", "4", "5", "6"] }
+				})
 				.toArray()
 				.then((ans) => {
 					console.log(ans);
