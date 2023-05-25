@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const collegedata = require("./model/collegedata-model");
 const MongoClient = require("mongodb").MongoClient;
 
-const url = "mongodb+srv://tneaadmin:tneagctadmission2019@tneaload.ohdde.mongodb.net/?retryWrites=true&w=majority";
+const url = "";
 const databasename = "gasa";
 
 app.get("/api", (req, res) => {
