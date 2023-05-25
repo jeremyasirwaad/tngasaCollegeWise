@@ -765,7 +765,7 @@ export const Table = () => {
 					Mobile: item.m,
 					Alt_Mobile: item.alm,
 					Email: item.e,
-					Aggregate_marks: item.rks3,
+					Aggregate_marks: item.tot,
 					DPI_Matched:
 						item.df === null || item.df === undefined
 							? "To Be Verified"
@@ -886,7 +886,9 @@ export const Table = () => {
 
 	const getdata = () => {
 		setIsloading(true);
-		fetch(`https://collegeportal.tngasa.in/api/list?clgid=${clgcode}&bid=${bcode}`)
+		fetch(
+			`https://collegeportal.tngasa.in/api/list?clgid=${clgcode}&bid=${bcode}`
+		)
 			.then((data) => data.json())
 			.then((result) => {
 				// console.log(result.result);
