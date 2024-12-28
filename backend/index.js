@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const collegedata = require("./model/collegedata-model");
 const MongoClient = require("mongodb").MongoClient;
 
-const url = "";
+const url = "mongodb://localhost:27017/tngasa";
 const databasename = "gasa";
 
 app.get("/api", (req, res) => {
@@ -27,7 +27,6 @@ app.get("/api/list", async (req, res) => {
 				.find({ bcode: branchid, ccode: parseInt(clgid) })
 				.toArray()
 				.then((ans) => {
-
 					if (ans == undefined || ans == null) {
 						console.log(
 							ans,
@@ -51,8 +50,7 @@ app.get("/api/list", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
-		
+		});
 });
 
 app.get("/api/dap", async (req, res) => {
@@ -61,7 +59,7 @@ app.get("/api/dap", async (req, res) => {
 
 	MongoClient.connect(url)
 		.then((client) => {
-			 connect = client.db(databasename);
+			connect = client.db(databasename);
 			const collection = connect.collection("gasaartschoicemaps");
 
 			collection
@@ -79,7 +77,7 @@ app.get("/api/dap", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/secforce", async (req, res) => {
@@ -109,7 +107,7 @@ app.get("/api/secforce", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/ex", async (req, res) => {
@@ -136,7 +134,7 @@ app.get("/api/ex", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/ncc", async (req, res) => {
@@ -163,7 +161,7 @@ app.get("/api/ncc", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/ants", async (req, res) => {
@@ -190,7 +188,7 @@ app.get("/api/ants", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/sports", async (req, res) => {
@@ -217,7 +215,7 @@ app.get("/api/sports", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.get("/api/part", async (req, res) => {
@@ -244,7 +242,7 @@ app.get("/api/part", async (req, res) => {
 		.catch((err) => {
 			// Printing the error message
 			console.log(err.Message);
-		})
+		});
 });
 
 app.listen(8080, () => {
